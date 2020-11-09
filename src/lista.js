@@ -15,6 +15,12 @@ module.exports = class Lista {
 		return NaN;
 	}
 	add(clave, valor) {
-		this.#elementos.push({ clave, valor });
+		this.#elementos.push({ [`${clave}`]: valor });
+	}
+	getByKey(clave){
+		if (this.#elementos.length == 1) {
+			return this.#elementos[0][clave];
+		}
+		return NaN;
 	}
 };
