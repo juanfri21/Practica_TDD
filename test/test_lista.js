@@ -25,10 +25,15 @@ describe('En una lista vacia', function () {
 describe('Cuando se agrega un elemento en una lista vacia', function () {
 	var lista = new Lista();
 	lista.add('name', 'juan');
+	
 	it('Hay un elemento', function () {
 		assert.equal(lista.count(), 1);
 	});
 	it('Se puede recuperar el valor a partir de la clave.', function () {
 		assert.equal(lista.getByKey('name'), 'juan');
+	});
+	it('Cuando se agrega una clave que ya está en la lista se actualiza el valor correspondiente.', function () {
+		assert.equal(lista.add('name', 'jose'), 'actualizado');
+
 	});
 });
