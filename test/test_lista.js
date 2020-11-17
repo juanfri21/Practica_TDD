@@ -25,15 +25,36 @@ describe('En una lista vacia', function () {
 describe('Cuando se agrega un elemento en una lista vacia', function () {
 	var lista = new Lista();
 	lista.add('name', 'juan');
-	
+
 	it('Hay un elemento', function () {
 		assert.equal(lista.count(), 1);
 	});
 	it('Se puede recuperar el valor a partir de la clave.', function () {
 		assert.equal(lista.getByKey('name'), 'juan');
 	});
-	it('Cuando se agrega una clave que ya está en la lista se actualiza el valor correspondiente.', function () {
-		assert.equal(lista.add('name', 'jose'), 'actualizado');
+});
 
+describe('Cuando se agrega un elemento en una lista con elementos', function () {
+	var lista = new Lista();
+	lista.add('name', 'juan');
+	lista.add('aa', 'juan');
+
+	it('Cuando se agrega una clave que ya está en la lista se actualiza el valor correspondiente.', function () {
+		lista.add('name', 'jose');
+		assert.equal(lista.getByKey('name'), 'jose');
 	});
+
+	it('al principio la lista de claves esta ordenada', function () {
+		lista.addFirst('cc', 'juan');
+		assert.deepEqual(lista.getElementosOrdenados(), ['aa', 'cc', 'name']);
+	});
+	it('al final la lista de claves esta ordenada', function () {
+		lista.add(3, 'juan');
+		assert.deepEqual(lista.getElementosOrdenados(), ['aa', 'bb', 'cc', 'name']);
+	});
+	it('se puede eliminar una pareja a partir de su clave', function () {
+		lista.delete('bb');
+		assert.deepEqual(lista.getElementosOrdenados(), ['aa', 'cc', 'name']);
+	});
+
 });

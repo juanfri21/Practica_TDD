@@ -29,17 +29,49 @@ module.exports = class Lista {
 		let found_index = this.findKeyIndex(key);
 		if (!isNaN(found_index)) {
 			this.#elementos[found_index][`${key}`] = value;
-			return 'actualizado'
 		} else {
 			this.#elementos.push({ [`${key}`]: value });
-			return 'no_actualizado'
 		}
+		this.getOrderList();
 	}
-	update(key, value) {}
+	addFirst(key, value) {
+		let found_index = this.findKeyIndex(key);
+		if (!isNaN(found_index)) {
+			this.#elementos[found_index][`${key}`] = value;
+		} else {
+			this.#elementos.unshift({ [`${key}`]: value });
+		}
+		this.getOrderList();
+	}
+	getOrderList() {
+		this.#elementos.sort(function (a, b) {
+			if (Object.keys(a)[0] > Object.keys(b)[0]) {
+				return 1;
+			}
+			if (Object.keys(a)[0] < Object.keys(b)[0]) {
+				return -1;
+			}
+			return 0;
+		});
+	}
 	getByKey(key) {
-		if (this.#elementos.length == 1) {
-			return this.#elementos[0][key];
+		let index_element = this.findKeyIndex(key);
+		if (!isNaN(index_element)) {
+			return this.#elementos[index_element][key];
 		}
 		return NaN;
+	}
+	getElementosOrdenados() {
+		let ordered_keys = [];
+		this.#elementos.forEach((element) => {
+			ordered_keys.push(Object.keys(element)[0]);
+		});
+		return ordered_keys;
+	}
+	delete(key) {
+		let index_element = this.findKeyIndex(key);
+		if (!isNaN(index_element)) {
+			this.#elementos.splice(index_element, 1);
+		}
 	}
 };
