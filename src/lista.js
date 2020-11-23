@@ -26,7 +26,7 @@ module.exports = class Lista {
 		} else {
 			this.#elementos.push({ [`${key}`]: value });
 		}
-		this.getOrderList();
+		this.sortList();
 	}
 	addFirst(key, value) {
 		let found_index = this.findKeyIndex(key);
@@ -35,9 +35,9 @@ module.exports = class Lista {
 		} else {
 			this.#elementos.unshift({ [`${key}`]: value });
 		}
-		this.getOrderList();
+		this.sortList();
 	}
-	getOrderList() {
+	sortList() {
 		this.#elementos.sort(function (a, b) {
 			if (Object.keys(a)[0] > Object.keys(b)[0]) {
 				return 1;
@@ -55,7 +55,7 @@ module.exports = class Lista {
 		}
 		return NaN;
 	}
-	getElementosOrdenados() {
+	getClavesOrdenadas() {
 		let ordered_keys = [];
 		this.#elementos.forEach((element) => {
 			ordered_keys.push(Object.keys(element)[0]);

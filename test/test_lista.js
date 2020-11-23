@@ -46,15 +46,15 @@ describe('Cuando se agrega un elemento en una lista con elementos', function () 
 
 	it('al principio la lista de claves esta ordenada', function () {
 		lista.addFirst('cc', 'juan');
-		assert.deepEqual(lista.getElementosOrdenados(), ['aa', 'cc', 'name']);
+		assert.deepEqual(lista.getClavesOrdenadas(), ['aa', 'cc', 'name']);
 	});
 	it('al final la lista de claves esta ordenada', function () {
 		lista.add(3, 'juan');
-		assert.deepEqual(lista.getElementosOrdenados(), ['aa', 'bb', 'cc', 'name']);
+		assert.deepEqual(lista.getClavesOrdenadas(), ['aa', 'bb', 'cc', 'name']);
 	});
 	it('se puede eliminar una pareja a partir de su clave', function () {
 		lista.delete('bb');
-		assert.deepEqual(lista.getElementosOrdenados(), ['aa', 'cc', 'name']);
+		assert.deepEqual(lista.getClavesOrdenadas(), ['aa', 'cc', 'name']);
 	});
 
 });
