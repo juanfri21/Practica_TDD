@@ -8,12 +8,6 @@ module.exports = class Lista {
 	count() {
 		return this.#elementos.length;
 	}
-	find() {
-		if (this.#elementos.length == 1) {
-			return this.#elementos[0].value;
-		}
-		return NaN;
-	}
 	findKeyIndex(key) {
 		let found = NaN;
 		if (this.count()) {
