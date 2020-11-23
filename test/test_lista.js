@@ -35,26 +35,34 @@ describe('Cuando se agrega un elemento en una lista vacia', function () {
 });
 
 describe('Cuando se agrega un elemento en una lista con elementos', function () {
-	var lista = new Lista();
-	lista.add('name', 'juan');
-	lista.add('aa', 'juan');
+	
 
 	it('Cuando se agrega una clave que ya está en la lista se actualiza el valor correspondiente.', function () {
+		var lista = new Lista();
+		lista.add('name', 'juan');
 		lista.add('name', 'jose');
 		assert.equal(lista.getByKey('name'), 'jose');
 	});
 
 	it('al principio la lista de claves esta ordenada', function () {
-		lista.addFirst('cc', 'juan');
-		assert.deepEqual(lista.getClavesOrdenadas(), ['aa', 'cc', 'name']);
+		var lista = new Lista();
+		lista.addFirst('name', 'juan');
+		lista.addFirst('apellido', 'tentor');
+		lista.addFirst('cc', 'aa');
+		assert.deepEqual(lista.getClavesOrdenadas(), ['apellido', 'cc', 'name']);
 	});
 	it('al final la lista de claves esta ordenada', function () {
-		lista.add(3, 'juan');
-		assert.deepEqual(lista.getClavesOrdenadas(), ['aa', 'bb', 'cc', 'name']);
+		var lista = new Lista();
+		lista.add('name', 'juan');
+		lista.add('apellido', 'tentor');
+		lista.add('cc', 'aa');
+		assert.deepEqual(lista.getClavesOrdenadas(), ['apellido', 'cc', 'name']);
 	});
 	it('se puede eliminar una pareja a partir de su clave', function () {
-		lista.delete('bb');
-		assert.deepEqual(lista.getClavesOrdenadas(), ['aa', 'cc', 'name']);
+		var lista = new Lista();
+		lista.add('name', 'juan');
+		lista.add('apellido', 'tentor');
+		lista.delete('apellido');
+		assert.deepEqual(lista.getClavesOrdenadas(), ['name']);
 	});
-
 });
