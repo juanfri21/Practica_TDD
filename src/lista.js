@@ -26,19 +26,10 @@ module.exports = class Lista {
 		} else {
 			this.#elementos.push({ [`${key}`]: value });
 		}
-		this.sortList();
-	}
-	addFirst(key, value) {
-		let found_index = this.findKeyIndex(key);
-		if (!isNaN(found_index)) {
-			this.#elementos[found_index][`${key}`] = value;
-		} else {
-			this.#elementos.unshift({ [`${key}`]: value });
-		}
-		this.sortList();
 	}
 	sortList() {
-		this.#elementos.sort(function (a, b) {
+		var ordered_list = [...this.#elementos];
+		ordered_list.sort(function (a, b) {
 			if (Object.keys(a)[0] > Object.keys(b)[0]) {
 				return 1;
 			}
@@ -47,6 +38,7 @@ module.exports = class Lista {
 			}
 			return 0;
 		});
+		return ordered_list;
 	}
 	getByKey(key) {
 		let index_element = this.findKeyIndex(key);
@@ -55,9 +47,9 @@ module.exports = class Lista {
 		}
 		return NaN;
 	}
-	getClavesOrdenadas() {
+	getOrderedKeys() {
 		let ordered_keys = [];
-		this.#elementos.forEach((element) => {
+		this.sortList().forEach((element) => {
 			ordered_keys.push(Object.keys(element)[0]);
 		});
 		return ordered_keys;

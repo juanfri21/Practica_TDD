@@ -46,23 +46,23 @@ describe('Cuando se agrega un elemento en una lista con elementos', function () 
 
 	it('al principio la lista de claves esta ordenada', function () {
 		var lista = new Lista();
-		lista.addFirst('name', 'juan');
-		lista.addFirst('apellido', 'tentor');
-		lista.addFirst('cc', 'aa');
-		assert.deepEqual(lista.getClavesOrdenadas(), ['apellido', 'cc', 'name']);
+		lista.add('cc', 'aa');
+		lista.add('apellido', 'tentor');
+		lista.add('name', 'juan');
+		assert.deepEqual(lista.getOrderedKeys(), ['apellido', 'cc', 'name']);
 	});
 	it('al final la lista de claves esta ordenada', function () {
 		var lista = new Lista();
 		lista.add('name', 'juan');
 		lista.add('apellido', 'tentor');
 		lista.add('cc', 'aa');
-		assert.deepEqual(lista.getClavesOrdenadas(), ['apellido', 'cc', 'name']);
+		assert.deepEqual(lista.getOrderedKeys(), ['apellido', 'cc', 'name']);
 	});
 	it('se puede eliminar una pareja a partir de su clave', function () {
 		var lista = new Lista();
 		lista.add('name', 'juan');
 		lista.add('apellido', 'tentor');
 		lista.delete('apellido');
-		assert.deepEqual(lista.getClavesOrdenadas(), ['name']);
+		assert.deepEqual(lista.getOrderedKeys(), ['name']);
 	});
 });
